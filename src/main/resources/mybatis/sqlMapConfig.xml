@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 配置别名 -->
 	<typeAliases>
 		<!-- 批量扫描别名 -->
-		<package name="com.zeek.ssm.po" />
+		<package name="cn.itcast.ssm.po" />
 	</typeAliases>
 	<!-- 配置mapper 由于使用spring和Mybatis的整合包进行mapper扫描，这里不需要配置了。 但是必须遵循：mapper.xml和mapper.java文件同名且在同一个目录 -->
 	<!-- <mappers></mappers> -->
