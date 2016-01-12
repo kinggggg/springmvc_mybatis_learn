@@ -24,6 +24,7 @@ import cn.itcast.ssm.service.ItemsService;
  * Description:商品的controller
  */
 @Controller
+@RequestMapping("/items")
 public class ItemsController {
 
 	@Autowired
@@ -49,6 +50,22 @@ public class ItemsController {
 
 		return modelAndView;
 
+	}
+	
+	@RequestMapping(value="/editItems",method={RequestMethod.POST,RequestMethod.GET})
+	//@RequestParam里边指定request传入参数名称和形参进行绑定。
+	//通过required属性指定参数是否必须要传入
+	//通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定。
+	public String editItems(Model model,@RequestParam(value="id",required=true) Integer items_id)throws Exception {
+		
+		//调用service根据商品id查询商品信息
+		ItemsCustom itemsCustom = itemsService.findItemsById(items_id);
+		
+		//通过形参中的model将model数据传到页面
+		//相当于modelAndView.addObject方法
+		model.addAttribute("itemsCustom", itemsCustom);
+		
+		return "items/editItems";
 	}
 
 }
