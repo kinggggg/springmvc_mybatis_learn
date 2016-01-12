@@ -67,5 +67,25 @@ public class ItemsController {
 		
 		return "items/editItems";
 	}
+	
+	//商品信息修改页面显示
+	//限制http请求方法，可以post和get
+	@RequestMapping(value="/editItems2",method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView editItems()throws Exception {
+		
+		//调用service根据商品id查询商品信息
+		ItemsCustom itemsCustom = itemsService.findItemsById(1);
+		
+		// 返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		
+		//将商品信息放到model
+		modelAndView.addObject("itemsCustom", itemsCustom);
+		
+		//商品修改页面
+		modelAndView.setViewName("items/editItems");
+		
+		return modelAndView;
+	}
 
 }
