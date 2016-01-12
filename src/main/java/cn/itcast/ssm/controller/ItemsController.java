@@ -87,5 +87,18 @@ public class ItemsController {
 		
 		return modelAndView;
 	}
+	
+	//商品信息修改提交
+	@RequestMapping("/editItemsSubmit")
+	public String editItemsSubmit()throws Exception {
+		
+		//调用service更新商品信息，页面需要将商品信息传到此方法
+		
+		
+		//重定向到商品查询列表
+		return "redirect:queryItems.action";
+		
+//		return "success";
+	}
 
 }
