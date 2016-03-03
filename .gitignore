@@ -1,0 +1,11 @@
+#ignore file
+#.gitignore
+#.classpath
+#.project
+#.springBeans
+
+#ignore folder
+#.settings/*
+target/
+#src/test/java/*
+#src/test/resources/*
