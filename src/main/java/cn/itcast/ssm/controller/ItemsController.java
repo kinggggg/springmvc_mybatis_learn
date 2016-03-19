@@ -99,5 +99,13 @@ public class ItemsController {
 		//页面转发
 		return "forward:queryItems.action";
 	}
+	
+	//批量删除
+	@RequestMapping("/deleteItems")
+	public String deleteItems(Integer[] items_id){
+		//执行service方法
+		
+		return "success";
+	}
 
 }
