@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.itcast.ssm.po.ItemsCustom;
+import cn.itcast.ssm.po.ItemsQueryVo;
 import cn.itcast.ssm.service.ItemsService;
 
 /**
@@ -30,14 +31,12 @@ public class ItemsController {
 	@Autowired
 	private ItemsService itemsService;
 
-	// 商品查询
+	// 商品查询.
 	@RequestMapping("/queryItems")
-	public ModelAndView queryItems(HttpServletRequest request) throws Exception {
-		
-		System.out.println(request.getParameter("id"));
+	public ModelAndView queryItems(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
 
 		// 调用service查找 数据库，查询商品列表
-		List<ItemsCustom> itemsList = itemsService.findItemsList(null);
+		List<ItemsCustom> itemsList = itemsService.findItemsList(itemsQueryVo);
 		
 		// 返回ModelAndView
 		ModelAndView modelAndView = new ModelAndView();
