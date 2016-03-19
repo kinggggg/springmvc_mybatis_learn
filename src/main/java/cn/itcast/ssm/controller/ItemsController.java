@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.itcast.ssm.controller.validation.ValidGroup1;
 import cn.itcast.ssm.po.ItemsCustom;
 import cn.itcast.ssm.po.ItemsQueryVo;
 import cn.itcast.ssm.service.ItemsService;
@@ -88,11 +89,12 @@ public class ItemsController {
 	//在需要校验的pojo前边添加@Validated，在需要校验的pojo后边添加BindingResult
 	// bindingResult接收校验出错信息
 	// 注意：@Validated和BindingResult bindingResult是配对出现，并且形参顺序是固定的（一前一后）。
+	// value={ValidGroup1.class}指定使用ValidGroup1分组的 校验
 	@RequestMapping("/editItemsSubmit")
 	public String editItemsSubmit(
 			Model model,
 			HttpServletRequest request,Integer id,
-			@Validated ItemsCustom itemsCustom, BindingResult bindingResult)throws Exception {
+			@Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom, BindingResult bindingResult)throws Exception {
 		
 		// 获取校验错误信息
 		if (bindingResult.hasErrors()) {
