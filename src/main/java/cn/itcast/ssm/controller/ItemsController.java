@@ -31,16 +31,18 @@ public class ItemsController {
 	private ItemsService itemsService;
 	
 	// 商品分类
-		//itemtypes表示最终将方法返回值放在request中的key
-		@ModelAttribute("itemtypes")
-		public Map<String, String> getItemTypes() {
+	//注意：比如说此时存在用户管理的Controller，叫做UserController，并且其中的根路径为/users，那么在user对应的jsp页面中如果有例如这样的情况的话：
+	//比如说为http://localhost:8080/users 此时在这个jsp页面中是无法得到这个类型信息的
+	//itemtypes表示最终将方法返回值放在request中的key
+	@ModelAttribute("itemtypes")
+	public Map<String, String> getItemTypes() {
 
-			Map<String, String> itemTypes = new HashMap<String, String>();
-			itemTypes.put("101", "数码");
-			itemTypes.put("102", "母婴");
+		Map<String, String> itemTypes = new HashMap<String, String>();
+		itemTypes.put("101", "数码");
+		itemTypes.put("102", "母婴");
 
-			return itemTypes;
-		}
+		return itemTypes;
+	}
 
 	// 商品查询.
 	@RequestMapping("/queryItems")
