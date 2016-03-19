@@ -1,6 +1,8 @@
 package cn.itcast.ssm.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +29,18 @@ public class ItemsController {
 
 	@Autowired
 	private ItemsService itemsService;
+	
+	// 商品分类
+		//itemtypes表示最终将方法返回值放在request中的key
+		@ModelAttribute("itemtypes")
+		public Map<String, String> getItemTypes() {
+
+			Map<String, String> itemTypes = new HashMap<String, String>();
+			itemTypes.put("101", "数码");
+			itemTypes.put("102", "母婴");
+
+			return itemTypes;
+		}
 
 	// 商品查询.
 	@RequestMapping("/queryItems")
