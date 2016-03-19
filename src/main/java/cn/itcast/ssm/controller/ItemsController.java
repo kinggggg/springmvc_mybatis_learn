@@ -16,14 +16,6 @@ import cn.itcast.ssm.po.ItemsCustom;
 import cn.itcast.ssm.po.ItemsQueryVo;
 import cn.itcast.ssm.service.ItemsService;
 
-/**
- * 
- * <p>
- * Title: ItemsController
- * </p>
- * <p>
- * Description:商品的controller
- */
 @Controller
 @RequestMapping("/items")
 public class ItemsController {
@@ -105,6 +97,34 @@ public class ItemsController {
 	public String deleteItems(Integer[] items_id){
 		//执行service方法
 		
+		return "success";
+	}
+	
+	// 批量修改商品页面，将商品信息查询出来，在页面中可以编辑商品信息
+	@RequestMapping("/editItemsQuery")
+	public ModelAndView editItemsQuery(HttpServletRequest request,
+			ItemsQueryVo itemsQueryVo) throws Exception {
+
+		// 调用service查找 数据库，查询商品列表
+		List<ItemsCustom> itemsList = itemsService.findItemsList(itemsQueryVo);
+
+		// 返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		// 相当 于request的setAttribut，在jsp页面中通过itemsList取数据
+		modelAndView.addObject("itemsList", itemsList);
+
+		modelAndView.setViewName("items/editItemsQuery");
+
+		return modelAndView;
+
+	}
+	
+	// 批量修改商品提交
+	// 通过ItemsQueryVo接收批量提交的商品信息，将商品信息存储到itemsQueryVo中itemsList属性中。
+	@RequestMapping("/editItemsAllSubmit")
+	public String editItemsAllSubmit(ItemsQueryVo itemsQueryVo)
+			throws Exception {
+
 		return "success";
 	}
 
