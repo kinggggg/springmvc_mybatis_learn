@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,7 +61,7 @@ public class ItemsController {
 		
 		//通过形参中的model将model数据传到页面
 		//相当于modelAndView.addObject方法
-		model.addAttribute("itemsCustom", itemsCustom);
+		model.addAttribute("items", itemsCustom);
 		
 		return "items/editItems";
 	}
@@ -94,7 +95,7 @@ public class ItemsController {
 	public String editItemsSubmit(
 			Model model,
 			HttpServletRequest request,Integer id,
-			@Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom, BindingResult bindingResult)throws Exception {
+			@ModelAttribute("items") @Validated(value={ValidGroup1.class}) ItemsCustom itemsCustom, BindingResult bindingResult)throws Exception {
 		
 		// 获取校验错误信息
 		if (bindingResult.hasErrors()) {
@@ -108,10 +109,6 @@ public class ItemsController {
 			}
 			// 将错误信息传到页面
 			model.addAttribute("allErrors", allErrors);
-			
-			
-			//可以直接使用model将提交pojo回显到页面
-			model.addAttribute("items", itemsCustom);
 			
 			// 出错重新到商品修改页面
 			return "items/editItems";
