@@ -100,4 +100,14 @@
             <value>5342880</value>
         </property>
     </bean>
+    
+    <!--拦截器 -->
+	<mvc:interceptors>
+	    <!--多个拦截器,顺序执行 -->
+	    <!-- 登陆认证拦截器 -->
+	    <mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	        <bean class="cn.itcast.ssm.interceptor.LoginInterceptor"></bean>
+	    </mvc:interceptor>
+	</mvc:interceptors>
 </beans>
