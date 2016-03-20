@@ -29,6 +29,17 @@
 	比如json转换解析器就默认加载了，如果使用mvc:annotation-driven不用配置上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter
 	实际开发时使用mvc:annotation-driven
 	 -->
+	 <!-- 说明：当在controller中使用@RequestBody来接受json形式的请求数据或者是使用@ResponseBody返回json形式的相应数据，如果采取下面的方式配置处理器适配器
+	 和处理器映射器的话，此时是不需要单独显示地将spring提供的json转换器配置到配置文件中的，否则是需要显示配置的，如下：
+	  -->
+	  <!--注解适配器 -->
+    <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+        <list>
+        <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean>
+        </list>
+        </property>
+    </bean> -->
 	<mvc:annotation-driven conversion-service="conversionService" validator="validator"/>
 	
 
