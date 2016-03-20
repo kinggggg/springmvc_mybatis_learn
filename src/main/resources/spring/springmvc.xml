@@ -81,4 +81,12 @@
     注意：系统的全局异常处理器只能存在一个，如果在配置中配置了多个实现了HandlerExceptionResolver接口的异常处理器，只有一个会起作用
      -->
     <bean class="cn.itcast.ssm.exception.CustomExceptionResolver"></bean>
+    
+    <!-- 文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传图片的最大尺寸为5MB -->
+        <property name="maxUploadSizePerFile">
+            <value>5342880</value>
+        </property>
+    </bean>
 </beans>
