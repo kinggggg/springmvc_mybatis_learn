@@ -15,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -67,6 +69,18 @@ public class ItemsController {
 
 		return modelAndView;
 
+	}
+	
+	//查询商品信息，输出json
+	///itemsView/{id}里边的{id}表示占位符，通过@PathVariable获取占位符中的参数，
+	//如果占位符中的名称和形参名一致，在@PathVariable可以不指定名称
+	@RequestMapping("/itemsView/{id}")
+	public @ResponseBody ItemsCustom itemsView(@PathVariable("id") Integer id)throws Exception{
+		
+		//调用service查询商品信息
+		ItemsCustom itemsCustom = itemsService.findItemsById(id);
+		
+		return itemsCustom;
 	}
 	
 	@RequestMapping(value="/editItems",method={RequestMethod.POST,RequestMethod.GET})
